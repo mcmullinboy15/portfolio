@@ -186,24 +186,24 @@
         <v-row>
           <v-col>
             <v-card>
-              <v-card-title>
-                <v-row>
+              <v-card-title class="header">
+                <v-row class="header-row">
                   <v-col
                     v-for="header of Object.keys(sections)"
                     :key="header"
                     @click="selected_section = header"
-                    class="px-0 text-center mx-3"
+                    :class="['header-col px-0 text-center mx-3', (selected_section === header) ? 'tab selected-tab' : 'tab unselected-tab']"
                     style="word-break: break-word;"
                   >
+                      <!-- :style="(selected_section === header) ? `border-bottom: 1px solid grey;` : ''" -->
                     <h3
                       :class="[(selected_section === header) ? 'primary--text' : 'grey--text']"
-                      :style="(selected_section === header) ? `border-bottom: 1px solid grey;` : ''"
                     >{{header}}</h3>
                   </v-col>
                 </v-row>
               </v-card-title>
 
-              <v-divider color="grey"></v-divider>
+              <!-- <v-divider color="grey"></v-divider> -->
 
               <v-card-text class="pt-1 pb-0"
                 v-touch="{
@@ -314,5 +314,26 @@ export default {
 }
 .v-slide-group__prev {
   display: none;
+}
+
+.header {
+  background-color: rgb(40, 40, 40);
+
+  padding-top: 24px;
+  padding-bottom: 12px;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 10px 0px;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.tab:hover {
+  background-color: rgb(35, 35, 35);
+}
+
+.selected-tab {
+  background-color: rgb(30, 30, 30);
 }
 </style>
