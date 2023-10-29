@@ -7,57 +7,64 @@ export default new Vuex.Store({
   state: {
     experiences: [
       {
-        title: "Apple",
-        subtitle: "Software Engineer Intern",
+        title: "CONTROLS ENGINEER 1",
+        subtitle: "Precision Systems Engineering | March 2023",
         description: [
-          "Built the Hardware Technology Compiled Memory Website \
-          from scratch to replace the current outdated implementation. \
-          Focused on maintainability and ease of future updates using \
-          a class-based architecture, modern libraries such as Python \
-          and JavaScript, and popular code standardizations such as \
-          Django. Followed standards for Authentication, Authorization, \
-          Testing, and Continuous Integration.",
-          "This project was in production by the end of the Internship.",
-          "Additionally, contributed to the documentation of Apple's \
-          Authentication Team.",
-          "Skills: Django, Vue.js, Redis, Celery workers"
+          "Developed an 'Ignition'-based HMI for a mineral plant, complemented by a production-ready HTTPS data API",
+          "Custom CRM for Job/Proposal workflow, within Outlook Add-in. (React, Express, API, Azure)",
+        ]
+      },
+      {
+        title: "FULL-STACK ENGINEER",
+        subtitle: "FREELANCE | June 2020",
+        description: [
+          "Project Lead at Podcast Automation Startup, 3rd-party API integration in React, Express, DynamoDB: podflow.ai",
+          "Automated Payroll for GoalHome LLC. 4+ hours to 5 minutes. Factoring in overtime and unique day/night pay",
+          "Nonprofit Frontend UI (bwbutah.org), highlighting mission and initiatives. (Vue, Custom CSS, Google Firebase)",
+          "Secure Video Streaming (videojs) webpage. Instructional videos for textbook supplementation: prclinks.com"
+        ],        
+      },
+      {
+        title: "FULL-STACK ENGINEER (INTERN)",
+        subtitle: "APPLE | May 2022 - Aug 2022",
+        description: [
+          "Rebuilt a 10-year-old webpage for Hardware Tech's Compiled Memory engineers. Production ready in 3 months",
+          "Focused on Code Maintainability, for easiest possible future updates. (Docker, CI/CD, unit/e2e tests)",
+          "Implemented Vue.js, dramatically enhancing response times and eliminating blocking notifications on errors",
+          "Detailed Docker management, Django backend & Redis queue to communicate with Apple Compute queue"
+        ]
+      },
+      {
+        title: "BACKEND ENGINEER (INTERN)",
+        subtitle: "OPTIMA POWERWARE | July 2021 - Aug 2021",
+        description: [
+          "ML model controls, backend management for goldmine automation. Currently in production",
+          "React & REST API (django), Rebuilt for scalability"
         ]
       },
       {
         to: "EZsalt",
-        title: "EZsalt",
-        subtitle: "CTO & Co-Founder",
+        title: "CO-FOUNDER AND CTO",
+        subtitle: "EZSALT (Startup) | Nov 2019 - July 2021",
         description: [
-          "Click the link to see how the EZsalt website, backend software, and all other services needed for EZsalt were built.",
-          "Google Cloud Platform(GCP) and Firebase were the Cloud Platforms used.",
-          "Skills: Vue.js, node.js, Firebase, GCP, Django, MQTT"
-        ]
+          "Built micro-controller for monitoring water-softener salt levels on your phone",
+          "300+ users, 0 failures, 3+ years. Scaleable to thousands of new customers",
+          "Vue, Express, CI/CD, Github Actions, FirebaseAuth, and Firestore, used for scalability and simplicity",
+          "4+ Cloud Functions for new users, messages, etc. 12+ other API endpoints mcmullin.app/ezsalt"
+        ],
       },
       {
-        github: "https://github.com/mcmullinboy15/Optima-Partical_Size",
-        title: "Optima Powerware",
-        subtitle: "ML intern",
+        title: "MACHINE LEARNING ENGINEER (INTERN)",
+        subtitle: "OPTIMA POWERWARE | May 2020 - Aug 2020",
         description: [
-          "This repository is from working at my Summer Intership at Optima Powerware.",
-          "I was able to work with Neural Networks in PyTorch and Controls for a Gold Mine.",
-          "This repo contains everything from small scripts needed when manipulating data, to Testing models, to Training approaches.",
-          "Skills: Pytorch"
-        ]
-      },
-      {
-        title: "Optima Powerware",
-        subtitle: "Full Stack Software Engineer",
-        description: [
-          "Developed controls for Goldmines to understand our controls and ML models.",
-          "Recommended React.js for development scalability.",
-          "Fixed Django templates implementation and design. Rebuilt current application to use Django API and React.js",
-          "Skills: Django, React.js"
+          "PyTorch Neural Network predicting Goldmine output quality. 3-5 Linear Layers, 16 input to 1 output feature",
+          "Eliminated manual sampling every 4 hours"
         ]
       },
       {
         github: "",
-        title: "Precision Systems Engineering",
-        subtitle: "Full Stack Software Engineer",
+        title: "FULL STACK SOFTWARE ENGINEER",
+        subtitle: "PRECISION SYSTEMS ENGINEERING",
         description: [
           "Company Finanical Display. Displays Finanical Data about the company and the progress of different projects.",
           "Skills: Flask, Vue.js"
@@ -65,15 +72,107 @@ export default new Vuex.Store({
       },
       {
         to: "",
-        title: "Instructure",
-        subtitle: "Junior QA Engineer (Intern)",
+        title: "JUNIOR QA ENGINEER (INTERN)",
+        subtitle: "INSTRUCTURE",
         description: [
           "Performed testing and quality checks on new commits while developing new products.",
           "Skills: Git, Jira"
         ]
       }
     ],
+    education: [
+      {
+        title: "University of Michigan",
+        subtitle: "Masters in Computer Science and Engineering",
+        description: [
+          "Focused on prototyping and developing strategic UX/UI designs that address user needs using Figma and JS",
+          "AI/ML, Parallel Computing, and Advanced compilers help to master computer systems"
+        ]
+      },
+      {
+        title: "Utah State University",
+        subtitle: "Bachelors in Computer Science",
+        description: [
+          "AWS Cloud Computing, covered all AWS services for the AWS practitioners exam",
+          "Data Visualization, logical approaches to displaying data with charts and graphs (d3, jQuery)"
+        ]
+      }
+    ],
     projects: [
+      // crossover-js
+      {
+        github: "https://github.com/mcmullinboy15/crossover-js",
+        title: "Crossover JS",
+        description:
+          "Bridging the Gap between Frontend and Backend."
+      },
+      // 598_007
+      {
+        to: "/report/um/007",
+        github: "https://github.com/mcmullinboy15/598_007_Encrypted_Systems_Final_Project",
+        title: "Encrypted Systems Final Project",
+        description:
+          "Analyzing the effects of flipping bits to the MySQL encrypted '.ibd' data file, and the capabilities of some common encryption schemes on a basic '.csv' file. Started by flipping bits of a basic .csv file to see what effects flipping bits can have. We then look further at the effects of flipping bits on an encrypted .csv file to check for successful reloads, with incorrect data. Attempted to flip individual bits of the encrypted .ibd file to find any vulnerabilities in the Integrity Protection."
+      },
+      // Bagel_Bunch
+      {
+        github: "https://github.com/mcmullinboy15/BagelBunch",
+        title: "Bagel Bunch",
+        description:
+          "Bagel Shop Ordering Software (Class Project). Found at https://bagelbunch-b5e21.web.app"
+      },
+      // Solar
+      {
+        to: "/report/usu/5620",
+        github: "https://github.com/mcmullinboy15/6620_Solar_Energy_Project",
+        title: "Solar Scheduling",
+        description:
+          "Using Solar Energy data to schedule when power is saved to batteries, or used in the house."
+      },
+      // UNO
+      {
+        github: "https://github.com/mcmullinboy15/uno",
+        title: "UNO Game: Full-Stack Class Project",
+        description:
+          "Uno game for DevOps class - This is forked from a Class Repo - I learned a lot about Cloud Platforms and integrating them into my Vue.js projects."
+      },
+      // Stock ALGO
+      {
+        github: "https://github.com/mcmullinboy15/ALGO",
+        title: "ALGO",
+        description:
+          "Stock Market Prediction Algorithums and manipulation"
+      },    
+      // esp
+      {
+        github: "https://github.com/mcmullinboy15/flash-multiple-esp-devices",
+        title: "Flash Multiple ESP Devices",
+        description:
+          "Python Script that uses esptool.py to Flash Multiple ESP Devices with tasmota-sensors.bin or any .bin you'd like to use"
+      },
+      // DataVis
+      // NeoWs
+      {
+        github: "https://github.com/mghoffmann/NeoWs_visualization",
+        title: "NeoWs Visualization",
+        description:
+          "The data is from a NASA api about asteroids and coments, collectively called near-earth objects (NEOs)"
+      },
+      // 3450-Section001
+      // 6620
+      // GoalHome?
+      {
+        github: "https://github.com/mcmullinboy15/GoalHome",
+        title: "GoalHome",
+        description:
+          "Automated Payroll for GoalHome LLC. 4+ hours to 5 minutes. Factoring in overtime and unique day/night pay"
+      },
+      {
+        github: "https://github.com/mcmullinboy15/vue-firebase-template",
+        title: "vue-firebase-template",
+        description:
+          "Template built for web projects with everything needed for Vue.js and Firebase integration. Including Auth, Database, etc."
+      },
       {
         github: "https://github.com/mcmullinboy15/portfolio",
         title: "This Portfolio",
@@ -92,25 +191,32 @@ export default new Vuex.Store({
         description: "Python package for canvas from Instructure API"
       },
       {
-        github: "",
-        title: "Stock Market Trading",
+        github: "https://github.com/mcmullinboy15/family_gift_planner",
+        title: "Family Gift Planner",
         description:
-          "I've built many Stock Market Prediction algorithms using basic Moving Averages and also Neural Network backbones."
+          "This app will help family members coordinate gift shopping. Each family member can log in and create their own gift wishlist. Everyone else in the group will be able to see their wishlist and check off gifts that they’ve bought without them seeing it. This will help so different family members don’t accidentally buy the same thing, and it will help each family member know what to buy."
       },
       {
-        github: "https://github.com/mcmullinboy15/vue-firebase-template",
-        title: "vue-firebase-template",
+        github: "https://github.com/mcmullinboy15/trail_tracker",
+        title: "Trail Tracker App",
         description:
-          "Template built for web projects with everything needed for Vue.js and Firebase integration. Including Auth, Database, etc."
+          "This app will help hikers know what hiking routes they have previously completed, what length they are, and they can even see pictures that they took on their previous hikes."
       },
       {
-        github: "https://github.com/mcmullinboy15/flash-multiple-esp-devices",
-        title: "flash-multiple-esp-devices",
+        github: "https://github.com/mcmullinboy15/cs5260-aws-s3-dynamodb",
+        title: "aws-s3-dynamodb",
         description:
-          "Modified the python script esptool.py to be able to Flash Multiple ESP Devices with a provided .bin file."
+          "Consumer/Producer Class Assignment"
       }
     ],
     tutorials: [
+      {
+        title: "Inductive Automation - Ignition",
+        description:
+          "A quick introduction to the new features and functionality in this version of Ignition.",
+        to:
+          "https://inductiveuniversity.com/courses/ignition/whats-new-in-ignition-8/8.0"
+      },
       {
         title: "Deep Learning and Neural Networks with Python and Pytorch",
         description:
