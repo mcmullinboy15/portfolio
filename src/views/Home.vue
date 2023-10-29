@@ -286,11 +286,12 @@ export default {
   }),
   firestore: { color: colorRef },
   computed: {
-    ...mapState(["experiences", "projects", "tutorials", "classes"]),
+    ...mapState(["experiences", "education", "projects", "tutorials", "classes"]),
     sections() {
       return {
         Experience: this.experiences,
-        Projects: this.projects
+        Education: this.education,
+        Projects: this.projects,
       };
     },
     section() {
