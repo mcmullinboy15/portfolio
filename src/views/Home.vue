@@ -87,7 +87,8 @@
                 </v-card-title>
 
                 <v-card-subtitle class="py-0">
-                  SWE intern @ Apple
+                  Contorls Engineer 1 @ PSE <br />
+                  x - SWE intern @ Apple
                 </v-card-subtitle>
               </v-card>
             </v-col>
@@ -207,8 +208,8 @@
 
               <v-card-text class="pt-1 pb-0"
                 v-touch="{
-                  left: () => selected_section = Object.keys(sections)[1],
-                  right: () => selected_section = Object.keys(sections)[0]
+                  left: () => selected_section = Object.keys(sections)[0],
+                  right: () => selected_section = Object.keys(sections)[1]
                 }"
               >
                 <template v-for="(item, idx) in section.data">
