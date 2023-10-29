@@ -1,7 +1,7 @@
 <template>
   <v-col cols="12" xs="10" sm="10" md="10" lg="10" xl="10">
     <!-- Main Screen Row -->
-    <v-row class="fill-height">
+    <v-row>
       <v-col cols="12" xs="12" sm="12" md="12" lg="6" xl="4">
         <v-card elevation="0" max-width="550px">
           <v-card-title>

@@ -69,7 +69,7 @@
           allowfullscreen="true"
           width="100%"
           height="569"
-        ></iframe>
+        />
       </v-list>
     </v-card>
   </v-col>

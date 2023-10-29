@@ -16,12 +16,13 @@
       </v-card-actions>
     </v-card>
 
-    <embed
+    <iframe
       v-if="cls.report !== '/none'"
       :src="`${cls.report}#toolbar=0&view=Fit`"
       type="application/pdf"
-      height="100%"
+      height="80%"
       width="100%"
+      frameborder="0"
     />
   </v-col>
 </template>

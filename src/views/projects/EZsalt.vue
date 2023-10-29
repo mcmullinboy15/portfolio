@@ -22,30 +22,41 @@
           target="_blank"
           text
           href="https://www.ezsalt.xyz/"
-          >Info Webpage</v-btn
+          >Webpage</v-btn
         >
         <v-btn
           color="primary"
           target="_blank"
           text
           href="https://apps.apple.com/us/app/ezsalt-2-0/id1569693258"
-          >IOS Download</v-btn
-        >
+          >
+            <v-icon color="primary">mdi-download</v-icon>
+            IOS
+        </v-btn>
         <v-btn
           color="primary"
           target="_blank"
           text
           href="https://play.google.com/store/apps/details?id=com.ezsalt.phoneapp"
-          >Android Download</v-btn
         >
+          <v-icon color="primary">mdi-download</v-icon>
+          Android
+        </v-btn>
       </v-card-actions>
     </v-card>
 
-    <embed
+    <!-- <embed
       src="/assets/EZsalt - Description.pdf#toolbar=0&view=Fit"
       type="application/pdf"
       height="100%"
       width="100%"
+    /> -->
+    <iframe
+      src="/assets/EZsalt - Description.pdf#toolbar=0&view=Fit"
+      type="application/pdf"
+      height="80%"
+      width="100%"
+      frameborder="0"
     />
   </v-col>
 </template>
