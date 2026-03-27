@@ -163,7 +163,7 @@ exports.lifeWeeksImage = onRequest({ cors: true }, (req, res) => {
     res.status(400).json({
       error: error.message,
       example:
-        '/api/life-weeks?birthDate=1998-04-12&deathDate=2078-04-12&columns=52',
+        '/api/life-weeks?birthDate=1998-04-12&deathDate=2078-04-12&columns=52&dotSize=9&gap=4&margin=24&completedColor=22c55e&remainingColor=3f3f46&backgroundColor=09090b&textColor=fafafa&title=Life%20in%20Weeks&format=svg',
     });
   }
 });
