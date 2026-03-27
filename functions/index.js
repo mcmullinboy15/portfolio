@@ -20,6 +20,30 @@ function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
 
+function normalizeHexColor(rawValue, fallback) {
+  if (!rawValue || typeof rawValue !== 'string') {
+    return fallback;
+  }
+
+  const trimmed = rawValue.trim();
+  const withHash = trimmed.startsWith('#') ? trimmed : `#${trimmed}`;
+
+  if (/^#[0-9a-fA-F]{3}$/.test(withHash)) {
+    const expanded = withHash
+      .slice(1)
+      .split('')
+      .map((digit) => `${digit}${digit}`)
+      .join('');
+    return `#${expanded.toLowerCase()}`;
+  }
+
+  if (/^#[0-9a-fA-F]{6}$/.test(withHash)) {
+    return withHash.toLowerCase();
+  }
+
+  return fallback;
+}
+
 function buildGridSvg({
   completedWeeks,
   totalWeeks,
@@ -85,10 +109,13 @@ exports.lifeWeeksImage = onRequest({ cors: true }, (req, res) => {
     const gap = clamp(parseInt(req.query.gap, 10) || 4, 0, 20);
     const margin = clamp(parseInt(req.query.margin, 10) || 24, 8, 100);
 
-    const completedColor = req.query.completedColor || '#22c55e';
-    const remainingColor = req.query.remainingColor || '#3f3f46';
-    const backgroundColor = req.query.backgroundColor || '#09090b';
-    const textColor = req.query.textColor || '#fafafa';
+    const completedColor = normalizeHexColor(
+      req.query.color || req.query.completedColor,
+      '#22c55e',
+    );
+    const remainingColor = normalizeHexColor(req.query.remainingColor, '#3f3f46');
+    const backgroundColor = normalizeHexColor(req.query.backgroundColor, '#09090b');
+    const textColor = normalizeHexColor(req.query.textColor, '#fafafa');
 
     const title = req.query.title || 'Life in Weeks';
     const subtitle = `${completedWeeks.toLocaleString()} weeks completed • ${remainingWeeks.toLocaleString()} weeks left`;
