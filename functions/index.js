@@ -75,6 +75,7 @@ exports.lifeWeeksImage = onRequest({ cors: true }, (req, res) => {
     const elapsedWeeksRaw = Math.floor((now - birthDate) / WEEK_MS);
     const completedWeeks = clamp(elapsedWeeksRaw, 0, totalWeeks);
     const remainingWeeks = totalWeeks - completedWeeks;
+    const daysLeft = remainingWeeks * 7;
     const progressPercent = totalWeeks > 0 ? (completedWeeks / totalWeeks) * 100 : 0;
     const remainingPercent = 100 - progressPercent;
     const ageYears = Math.floor((now - birthDate) / (365.25 * 24 * 60 * 60 * 1000));
@@ -91,7 +92,7 @@ exports.lifeWeeksImage = onRequest({ cors: true }, (req, res) => {
     const textColor = req.query.textColor || '#fafafa';
 
     const title = req.query.title || 'Life in Weeks';
-    const subtitle = `${completedWeeks.toLocaleString()} weeks completed • ${remainingWeeks.toLocaleString()} weeks left`;
+    const subtitle = `${completedWeeks.toLocaleString()} weeks completed • ${remainingWeeks.toLocaleString()} weeks left • ${daysLeft.toLocaleString()} days left`;
     const detailLine = `${progressPercent.toFixed(1)}% lived • ${remainingPercent.toFixed(1)}% to go • ~${ageYears} years old • ${daysLived.toLocaleString()} days lived`;
 
     if (req.query.format === 'json') {
@@ -102,6 +103,7 @@ exports.lifeWeeksImage = onRequest({ cors: true }, (req, res) => {
         totalWeeks,
         completedWeeks,
         remainingWeeks,
+        daysLeft,
         progressPercent: Number(progressPercent.toFixed(2)),
         remainingPercent: Number(remainingPercent.toFixed(2)),
         ageYears,
