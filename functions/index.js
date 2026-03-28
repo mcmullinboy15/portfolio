@@ -119,8 +119,8 @@ exports.lifeWeeksImage = onRequest({ cors: true }, (req, res) => {
     const textColor = normalizeHexColor(req.query.textColor, '#fafafa');
 
     const title = req.query.title || 'Life in Weeks';
-    const subtitle = `${completedWeeks.toLocaleString()} weeks completed • ${remainingWeeks.toLocaleString()} weeks left • ${daysLeft.toLocaleString()} days left`;
-    const detailLine = `${progressPercent.toFixed(1)}% lived • ${remainingPercent.toFixed(1)}% to go • ~${ageYears} years old • ${daysLived.toLocaleString()} days lived`;
+    const subtitle = `${completedWeeks.toLocaleString()} weeks completed • ${remainingWeeks.toLocaleString()} weeks left`;
+    const detailLine = `${progressPercent.toFixed(1)}% lived • ${remainingPercent.toFixed(1)}% to go • ~${ageYears} years old • ${daysLived.toLocaleString()} days lived • ${daysLeft.toLocaleString()} days left`;
 
     if (req.query.format === 'json') {
       res.status(200).json({
