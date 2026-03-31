@@ -57,7 +57,8 @@
                 :class="{ 'is-muted': role.featured === false }"
                 @click.stop="toggleExperience(role.id)"
               >
-                {{ projectsByExperience[role.id].length }} projects
+                {{ projectsByExperience[role.id].length }}
+                {{ pluralize("project", projectsByExperience[role.id].length) }}
                 <span class="project-toggle__chevron" :class="{ 'is-open': isExperienceOpen(role.id) }">▾</span>
               </button>
               <ul
@@ -110,7 +111,8 @@
                 class="timeline__meta project-toggle"
                 @click.stop="toggleEducation(item.id)"
               >
-                {{ projectsByEducation[item.id].length }} projects
+                {{ projectsByEducation[item.id].length }}
+                {{ pluralize("project", projectsByEducation[item.id].length) }}
                 <span class="project-toggle__chevron" :class="{ 'is-open': isEducationOpen(item.id) }">▾</span>
               </button>
               <ul
@@ -402,6 +404,9 @@ export default {
     },
   },
   methods: {
+    pluralize(word, count) {
+      return count === 1 ? word : `${word}s`;
+    },
     formatDateRange(startDate, endDate) {
       if (!startDate) return "";
       const startYear = new Date(startDate).getFullYear();

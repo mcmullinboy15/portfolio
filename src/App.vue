@@ -1,5 +1,16 @@
 <template>
-  <div class="app">
+  <div v-if="isResumePage" class="app app--resume">
+    <ResumePage
+      :profile="profile"
+      :experiences="experiences"
+      :education="education"
+      :courses="courses"
+      :projects="projects"
+      :skills="computedSkills"
+      :tag-definitions="tagDefinitions"
+    />
+  </div>
+  <div v-else class="app">
     <Navigation :brand="brand" />
     <HeroSection :profile="profile" />
     <div id="projects">
@@ -36,6 +47,7 @@ import ProjectsSection from "./components/ProjectsSection.vue";
 import AboutSection from "./components/AboutSection.vue";
 import SkillsSection from "./components/SkillsSection.vue";
 import ContactSection from "./components/ContactSection.vue";
+import ResumePage from "./components/ResumePage.vue";
 import {
   profile,
   stats,
@@ -57,6 +69,7 @@ export default {
     AboutSection,
     SkillsSection,
     ContactSection,
+    ResumePage,
   },
   data() {
     return {
@@ -73,6 +86,9 @@ export default {
     };
   },
   computed: {
+    isResumePage() {
+      return window.location.pathname === "/resume";
+    },
     computedSkills() {
       return this.skillDefinitions.map((skill) => {
         const projectCount = this.projects.filter((project) =>
@@ -86,9 +102,18 @@ export default {
         ).length;
 
         const evidenceParts = [];
-        if (projectCount) evidenceParts.push(`${projectCount} projects`);
-        if (courseCount) evidenceParts.push(`${courseCount} courses`);
-        if (experienceCount) evidenceParts.push(`${experienceCount} roles`);
+        if (projectCount)
+          evidenceParts.push(
+            `${projectCount} ${this.pluralize("project", projectCount)}`
+          );
+        if (courseCount)
+          evidenceParts.push(
+            `${courseCount} ${this.pluralize("course", courseCount)}`
+          );
+        if (experienceCount)
+          evidenceParts.push(
+            `${experienceCount} ${this.pluralize("role", experienceCount)}`
+          );
 
         return {
           ...skill,
@@ -118,17 +143,38 @@ export default {
       return this.stats.map((stat) => {
         switch (stat.label) {
           case "Projects Shipped":
-            return { ...stat, value: `${projectCount}+` };
+            return {
+              ...stat,
+              value: `${projectCount}+`,
+              label: projectCount === 1 ? "Project Shipped" : stat.label,
+            };
           case "Degrees":
-            return { ...stat, value: `${degreeCount}` };
+            return {
+              ...stat,
+              value: `${degreeCount}`,
+              label: degreeCount === 1 ? "Degree" : stat.label,
+            };
           case "Startups":
-            return { ...stat, value: `${startupCount}` };
+            return {
+              ...stat,
+              value: `${startupCount}`,
+              label: startupCount === 1 ? "Startup" : stat.label,
+            };
           case "Years Building":
-            return { ...stat, value: `${years}+` };
+            return {
+              ...stat,
+              value: `${years}+`,
+              label: years === 1 ? "Year Building" : stat.label,
+            };
           default:
             return stat;
         }
       });
+    },
+  },
+  methods: {
+    pluralize(word, count) {
+      return count === 1 ? word : `${word}s`;
     },
   },
 };
