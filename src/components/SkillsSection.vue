@@ -1,6 +1,6 @@
 <template>
   <section class="section">
-    <div class="section__header section__header--center" v-reveal="100">
+    <div class="section__header section__header--center" v-reveal="60">
       <span class="eyebrow">Expertise</span>
       <h2 class="section__title">
         Skills & <span class="text-gradient-gold">Mastery</span>
@@ -8,7 +8,7 @@
     </div>
 
     <div class="skills">
-      <div v-for="(skill, idx) in skills" :key="skill.id || skill.name" class="skill" v-reveal="200 + idx * 80">
+      <div v-for="(skill, idx) in skills" :key="skill.id || skill.name" class="skill" v-reveal="120 + idx * 40">
         <span class="skill__name">{{ skill.name }}</span>
         <span class="skill__evidence">
           <span
