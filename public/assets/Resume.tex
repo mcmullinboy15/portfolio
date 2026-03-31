@@ -1,0 +1,321 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{url}
+\usepackage{parskip}
+\usepackage{ifthen}
+\usepackage{xstring}
+
+% other packages for formatting
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.85, top=0.5in, bottom=0.25in]{geometry}
+
+% tabularx environment
+\usepackage{tabularx}
+
+% Lists within experience section
+\usepackage{enumitem}
+
+% Centered version of 'X' col. type
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+
+% Prevent spillover of tabular into next pages
+\usepackage{supertabular}
+\usepackage{tabularx}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+% Custom \section
+\usepackage{titlesec}
+\usepackage{multicol}
+\usepackage{multirow}
+
+% CV Sections inspired by: 
+% http://stefano.italians.nl/archives/26
+\titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+
+% Publications
+\usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
+
+% Setup hyperref package, and colours for links
+\usepackage[unicode, draft=false]{hyperref}
+\hypersetup{colorlinks,breaklinks,urlcolor=color,linkcolor=color}
+
+% Social icons
+\usepackage{fontawesome5}
+
+
+%---------------------------------------------------------------------------------------
+%	BEGIN CUSTOMIZATION
+%---------------------------------------------------------------------------------------
+
+% STYLE MODS
+\usepackage{carlito}
+\definecolor{color}{RGB}{11, 83, 148} % #0B5394
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\newlist{iitemize}{itemize}{1}
+\setlist[iitemize]{label=\textbullet, nosep, after=\strut, leftmargin=2em, itemsep=0.5pt, topsep=-1.5pt, partopsep=0pt}
+
+\setlength{\multicolsep}{3pt}
+\setlength{\multicolbaselineskip}{0pt}
+
+% VARIABLES
+\newcommand{\name}{Andrew McMullin}
+\newcommand{\email}{mcmullinand@gmail.com}
+\newcommand{\phone}{801-897-3786}
+\newcommand{\github}{mcmullinboy15}
+\newcommand{\linkedin}{andrew-mcmullin}
+\newcommand{\website}{mcmullin.app}
+\newcommand{\bl }[1]{{\color{color} #1}}
+\newcommand{\bb }[1]{{\color{color} \textbf{#1}}}
+\newcommand{\bub}[1]{{\color{color} \MakeUppercase{\textbf{#1}}}}
+
+
+% NEW COMMANDS
+
+% UPDATE \section
+\newcommand{\sectionTopMargin}{0.4cm}
+\newcommand{\sectionBottomMargin}{0.3cm}
+\titleformat{\section}
+    {\vspace{\dimexpr\sectionTopMargin-\baselineskip} \normalfont\normalsize\bfseries\bl}
+    {}
+    {0em}
+    {}
+    [\color{black}\titlerule \vspace{\dimexpr\sectionBottomMargin-\baselineskip}]
+
+% CREATE \experience
+\newcommand{\experienceGap}{5pt}
+\setlength{\parskip}{\experienceGap}
+\newcommand{\experience}[4]{
+    \bub{#1} \\
+    \textbf{#2} \hfill #3
+    \begin{iitemize}
+        #4
+    \end{iitemize}
+}
+
+% CREATE \reference
+\newcommand{\reference}[4]{
+    \begin{minipage}[t]{\linewidth}
+        %
+        \textbf{#1} \\
+        #2 \\
+        \href{mailto:#3}{\color{black}#3} \\
+        \href{tel:#4}{\color{black}#4}
+        %
+    \end{minipage}
+}
+%----------------------------------------------------------------------------------------
+%	END CUSTOMIZATION
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+% non-numbered pages
+\pagestyle{empty}
+
+%----------------------------------------------------------------------------------------
+%	HEADER
+%----------------------------------------------------------------------------------------
+\input{Header}
+\header
+
+%----------------------------------------------------------------------------------------
+%   EDUCATION
+%----------------------------------------------------------------------------------------
+\section{EDUCATION}
+
+\experience{Masters in Computer Science \& Engineering}{University of Michigan}{Dec 2022}{
+    \item AI/ML, Advanced Cryptography, Parallel Computing, Prototyping and Developing UI/UX Designs (figma, js). 
+}
+
+\experience{Bachelor's in Computer Science \& Minor in Math}{Utah State University}{May 2021}{
+    \item AWS practitioners, Logical Data Visualization Approaches 
+    % \item baseball mongodb project
+    % \item Encrypted System DB project
+}
+
+%----------------------------------------------------------------------------------------
+%   EXPERIENCE
+%----------------------------------------------------------------------------------------
+\section{EXPERIENCE}
+
+\experience{Full-Stack Engineer}{Origin}{Dec 2023 - present}{
+    \item Took over all Backend Development in Sept 2024, and Frontend Development in Oct 2024
+    \item Speed up development time by compiling 3 Backend codebases to be easy to understand, and improved CI/CD.
+    \item Implemented the Campaign Module for campaigns and campaign flights.
+    \item Converted forms and tables from Svelte to React. Used react-hook-form for reusable/dynamic components.
+    \item Identified SQL mistakes. Fixed Dashboard data, and endpoint latency from 4s to 0.7s by optimizing the SQL.
+}
+
+\experience{Adjunct Professor}{Utah State University}{Aug 2024 - present}{
+    \item Built and Taught course IS5700 - Advanced Client-Side Web Development with React.js
+    \item Currently building course IS5150 - Intro to JavaScript
+}
+
+% \experience{Controls Engineer 1}{PRESICION SYSTEMS ENGINEERING}{May 2023 - Dec 2023}{
+%     \item Built custom proposal workflow within Outlook Add-in. Finished an Ignition-based HMI (in production).
+% }
+
+\experience{Full-Stack Engineer (Intern)}{APPLE}{May 2022 - Aug 2022}{
+    \item Focused on maintainability for easiest possible future updates (Docker, CI/CD, Class arch., unit/e2e tests).
+    \item Replaced 10 year old Hardware Tech. Compiled Memory website. In production in 3 months.
+    \item Client-side logic (Vue.js) allowed for 10x response times, and 0 blocking notifications on errors. 
+    \item Django backend, with Redis queue to communicate with Apple Compute queue. Built with Docker. 
+}
+
+\experience{Full-Stack Engineer}{FREELANCE}{June 2020 - present}{
+    \item Contributed to podcast automation software at startup   Podflow, enhancing user experiences: \href{https://app.podflow.ai}{podflow.ai}
+    \item Automated GoalHome LLC's payroll with Python, factoring in overtime and unique day/night pay.
+    \item Created nonprofit website for Builders without Borders, highlighting their mission and initiatives: \href{https://bwbutah.org}{bwbutah.org}
+    \item Safely hosting textbook videos: \href{https://prclinks.com}{prclinks.com} --- Calculating optimal seed quantities: \href{https://beta-supra-ag.web.app}{beta-supra-ag.web.app}
+}
+
+\experience{Co-Founder and CTO}{EZSALT (Startup)}{Nov 2019 - July 2021}{
+    \item Built micro-controller with software for monitoring water-softener salt levels on your phone.
+    % \item Supports over 300+ users, without failures. Scaleable to thousands of new customers.
+    \item Managed 3-4 new versions, Django (AWS EC2), Vue/Flutter (Firebase), Cloud Functions \href{https://mcmullin.app/ezsalt}{mcmullin.app/ezsalt}
+    % \item 4+ Cloud Functions for new users, messages, etc (\href{https://mcmullin.app/ezsalt}{mcmullin.app/ezsalt}). 12+ other API endpoints. 
+}
+
+\experience{Machine Learning | Backend Engineer (Intern)}{OPTIMA POWERWARE}{May 2020 - Aug 2020 | July 2021 - Aug 2021}{
+    % pre-processing 20,000 data entries
+    \item Predicted Goldmine output quality, eliminating manual sampling. Using a PyTorch NN (5 Layers, 16:1 features)
+    % \item Developed Web-based ML controls. Refactored to use Django REST API and React.js, for scalability.
+}
+
+%----------------------------------------------------------------------------------------
+%   SKILLS
+%----------------------------------------------------------------------------------------
+\section{SKILLS}
+
+\begin{multicols}{2}
+    \begin{iitemize}
+        \item \textbf{Languages: } Typescript, JavaScript, Python, Go, C++, Java, SQL, Cuda, Docker, Linux
+        \item \textbf{Cloud Services: } Proficient in Google Cloud, and have multiple projects in AWS and Azure.
+        \item \textbf{Tools: } GoFiber, Go Concurrency, React, Vue, Node, Express, Numpy, Pandas, PyTorch, Github, Django, Flask, Redis, MPI.
+        % \item \textbf{UI/UX Design:} Highly Skilled in HTML/CSS, Hyper focused on clean UX with maintainable/clean code.
+        % \item \textbf{Additional Skills:} Eagle Scout, proficient in Tagalog language.
+    \end{iitemize}
+\end{multicols}
+
+%----------------------------------------------------------------------------------------
+%   REFERENCES: Derek Leach, Brandon, Sheldon, 
+%----------------------------------------------------------------------------------------
+\section{REFERENCES}
+
+\begin{multicols}{3}
+    \reference{Cody Anderson}{Head of Engineering at Dyper}{cody123anderson@gmail.com}{(602) 541-7677}
+    \reference{Derrick Leach}{CAD Manager at Apple}{dleach@apple.com}{(512) 502-4724}
+    \reference{Brandon Broschinsky}{VP of Prof. Services at Instructure}{brandonbr@instructure.com}{(801) 707-6047}
+\end{multicols}
+
+%----------------------------------------------------------------------------------------
+%	END DOCUMENT
+%----------------------------------------------------------------------------------------
+\end{document}
+
+
+%----------------------------------------------------------------------------------------
+Tesla: Evidence of Excellence
+%----------------------------------------------------------------------------------------
+I work hard. Given the opportunity, I solve problems quickly and love to learn new Computer concepts quickly.
+
+Some examples of this:
+
+- I had never heard of ML, Neural Networks (NN), or PyTorch, before my first Internship with Optima Powerware. I was tasked with creating a NN to predict/model the Goldmine's output quality, based on muilti-sensor input.
+
+- When Starting EZsalt I had never deployed anything to a Cloud Service, but was able to quickly deploy a Django application to AWS EC2 and soon upgraded/simplified my backend to use Firebase Functions.
+
+- I also quickly discovered and implemented an Mqtt protocal server for iot device communication.
+
+- While at Apple I was able to impress many with my ability to finish tasks quickly and effectivly.
+
+- A Freelance client asked for videos to not be downloadable. I went above and beyond to not only remove the download button but to also implement HLS (HTTP Live Streaming) using video.js. Which is the first and biggest step to making video content difficult to download.
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+Y-Combinator
+%----------------------------------------------------------------------------------------
+Describe yourself in a short phrase. e.g. "Machine learning engineer from Twitter", "Recent CS college grad who interned two summers at startups", "DevOps engineer who scaled a site to 10M+ users", "Frontend developer specializing in mobile interfaces" *
+
+::Full-Stack developer specializing in Quality and Qantity!
+
+What are you looking for in your next role? What would you like to avoid? (Might include aspects like technologies you want to work with, industries you’re interested in, team dynamics, software development practices … whatever is important to you) *
+
+:: I'm looking for an opportunity to contribute greatly to a team and be treated with respect. I picture respect as being trusted and receiving recognition for hard work on a project. 
+
+Optionally, describe a project that you worked on that you are proud of. It's best if you can describe it from start to finish including the motivation and technical details. If you are describing a team effort, please be specific about your personal contribution.
+
+::One project that I am particularly proud of is Podflow.ai, a platform designed to help podcasters grow their audience through audio enhancement, generated show notes, and audio transcriptions. I had the opportunity to work on various aspects of this project from start to finish.
+
+Motivation: The motivation behind Podflow.ai was to provide podcasters with a comprehensive solution to enhance their content and engage with their audience more effectively. By automating audio enhancement, generation of show notes, and audio transcriptions. We aimed to save podcasters time and effort, allowing them to focus on creating high-quality audio content.
+
+Technical Details: As part of the development team, my primary responsibilities included building and refining the frontend for generating and viewing transcripts. I worked on modifying the existing flow, enabling users to skip the enhancement step and proceed directly to the show notes section. Lastly I built a Podcast upload software to publish the newly enhanced audio and shownotes to a Podcast Provider.
+
+My personal contributions to the project included:
+
+Transcript Generation: I implemented the frontend functionality to generate accurate and readable transcriptions from podcast audio files. This involved utilizing speech-to-text APIs and integrating them seamlessly into the user interface.
+
+Flow Enhancement: I restructured the user flow within the platform to provide an option for users to bypass the enhancement step. This allowed them to proceed directly to the show notes section, saving time and simplifying the content creation process.
+
+Podcast Upload and Management: I created the entire functionality for users to automatically upload their podcast audio, title, description, and other settings to a dedicated provider that would handle their podcasts. This involved designing a seamless upload process and integrating with the provider's APIs.
+
+Throughout the project, I collaborated closely with the team to ensure a cohesive user experience and seamless integration of features. We regularly listened to user feedback and conducted iterative improvements to refine the platform's functionality and performance.
+
+Outcome: The result of our collective efforts was the successful launch of Podflow.ai. Podcasters could now leverage our platform to effortlessly generate transcriptions, show notes, and enhancments of their audio. The streamlined user flow and automated podcast management system made it easier for podcasters to publish and distribute their shows.
+
+My contributions to the project helped deliver a smooth user experience and improve the efficiency of content creation for podcasters. Being part of a team that developed a valuable tool for podcasters was incredibly rewarding, and seeing the positive impact it had on content creators validated our efforts.
+
+Overall, Podflow.ai stands as a testament to my ability to contribute to a team effort, collaborate across different disciplines, and deliver a project from inception to completion.
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+Question:
+What was one of the biggest technical challenges you faced, what was the root cause of the challenge, and how did you solve it?
+
+Answer:
+Built custom proposal workflow software, within Outlook Add-in
+
+One of the Biggest Technical Challenges during my Freelance work was the second bullet: "Built custom proposal workflow software, within Outlook Add-in".
+
+The challenge that I faced with this project was never having worked with Microsoft Outlook Add-ins and Azure Cloud before. While I was able to use React and Express.js I hadn't before integrated it with Outlook Add-ins. This caused many hours of reading through Microsoft's extensive documentation of the topic.
+
+To get a little more detailed, these Add-ins work off of XML-based manifest files. This was new to me and is not the most straightforward, also they are in the middle of adding new features so I dealt with version problems. 
+
+I solved this problem through  <mastering the manifest process and going from there>
+
+GPT
+Technical Challenge: Building manifest.xml files for Microsoft Outlook Addins.
+
+Root Cause: Creating manifest.xml files for Microsoft Outlook Addins can be intricate due to the rigorous validation requirements set by Microsoft, combined with the need to ensure cross-version and cross-platform compatibility. These files are pivotal as they dictate how the addin integrates with Outlook, how it displays, its permissions, and other essential parameters. A minor misconfiguration or oversight can render an addin unusable or inaccessible to the intended audience.
+
+In one particular project, I was faced with persistent errors during the validation process. The addin would work perfectly in my test environment, but upon deployment, some users on specific versions of Outlook were unable to access or use the addin properly.
+
+Solution: I initiated a multi-pronged troubleshooting process:
+
+Deep Dive into Documentation: I meticulously revisited Microsoft's documentation, ensuring that every parameter and configuration in the manifest file adhered to best practices.
+
+Version Control: Realizing that the issue might be tied to specific versions of Outlook, I set up multiple test environments replicating the problematic versions identified by end-users. This allowed me to reproduce the issues and more directly address them.
+
+Community Assistance: I sought assistance from the developer community. By engaging with forums, discussion groups, and experts familiar with Outlook Addins, I was able to gather insights that weren't explicitly covered in official documentation.
+
+Iterative Testing: Each modification was followed by rigorous testing in varied environments, ensuring that no further issues would arise after deployment.
+
+Ultimately, the problem boiled down to a combination of incorrectly set permissions and a version-specific quirk. After rectifying these issues and implementing feedback from the community, I was able to deploy a fully functional addin that was compatible across all intended platforms and versions.
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+FOR MIKE FOR META:
+Q: Would you be willing to write me a paragraph or two that I can send in? Basically, something that highlights your experiences and strengths?
+
+A; REVISED: I, Andrew McMullin, I'm the kinda of Software engineer that is in the middle between wanting to be a business owner and believes that I have good business ideas. But I also am passionate about software development and solving unique complex problems. I find myself throughout the day thinking of the best ways to solve work problems. With this I feel I am a great asset as someone that doesn't waist their time doing anything I'm told. I think before I waist my time, I find it important to push back if you believe the current path could be wrong. With that, I am highly teachable and coachable, I enjoy improving my skills and learning from my more experienced peers. Through my experience, I've gained a strong understanding of Full-Stack Development, Parallel Computing, ML/AI, and many other Computer Engineering topics that strongly apply to this role.
+%----------------------------------------------------------------------------------------
