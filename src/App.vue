@@ -87,7 +87,10 @@ export default {
   },
   computed: {
     isResumePage() {
-      return window.location.pathname === "/resume";
+      return (
+        window.location.pathname === "/resume" ||
+        new URLSearchParams(window.location.search).get("view") === "resume"
+      );
     },
     computedSkills() {
       return this.skillDefinitions.map((skill) => {
@@ -127,9 +130,12 @@ export default {
     computedStats() {
       const projectCount = this.projects.length;
       const degreeCount = this.education.length;
-      const startupCount = this.experiences.filter(
-        (exp) => exp.companyType === "startup"
-      ).length;
+      const startupCount = new Set(
+        this.experiences
+          .filter((exp) => exp.companyType === "startup")
+          .map((exp) => (exp.company || "").trim())
+          .filter(Boolean)
+      ).size;
       const earliest = this.experiences
         .map((exp) => exp.startDate)
         .filter(Boolean)
