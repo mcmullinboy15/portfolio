@@ -1,16 +1,5 @@
 <template>
   <BucketListPage v-if="isBucketListPage" />
-  <div v-else-if="isResumePage" class="app app--resume">
-    <ResumePage
-      :profile="profile"
-      :experiences="experiences"
-      :education="education"
-      :courses="courses"
-      :projects="projects"
-      :skills="computedSkills"
-      :tag-definitions="tagDefinitions"
-    />
-  </div>
   <div v-else class="app">
     <Navigation :brand="brand" />
     <HeroSection :profile="profile" />
@@ -48,7 +37,6 @@ import ProjectsSection from "./components/ProjectsSection.vue";
 import AboutSection from "./components/AboutSection.vue";
 import SkillsSection from "./components/SkillsSection.vue";
 import ContactSection from "./components/ContactSection.vue";
-import ResumePage from "./components/ResumePage.vue";
 import BucketListPage from "./components/BucketListPage.vue";
 import {
   profile,
@@ -71,7 +59,6 @@ export default {
     AboutSection,
     SkillsSection,
     ContactSection,
-    ResumePage,
     BucketListPage,
   },
   data() {
@@ -95,12 +82,6 @@ export default {
         path === "/bucket-list" ||
         path === "/life" ||
         new URLSearchParams(window.location.search).get("view") === "bucket-list"
-      );
-    },
-    isResumePage() {
-      return (
-        window.location.pathname === "/resume" ||
-        new URLSearchParams(window.location.search).get("view") === "resume"
       );
     },
     computedSkills() {
