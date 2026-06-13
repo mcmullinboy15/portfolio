@@ -162,9 +162,9 @@ export default {
     },
     sortItems(items) {
       const order = { "in-progress": 0, todo: 1, done: 2 };
-      return [...items].sort(
-        (a, b) => (order[a.status] ?? 1) - (order[b.status] ?? 1)
-      );
+      const rank = (status) =>
+        order[status] === undefined ? 1 : order[status];
+      return [...items].sort((a, b) => rank(a.status) - rank(b.status));
     },
   },
 };
