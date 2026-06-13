@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <title>Roadless &middot; Discover new routes</title>
+    <meta
+      name="description"
+      content="Put in a destination and get a route that weaves in roads you've never driven, then hand off to Google or Apple Maps and reflect on what was new."
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <!-- Leaflet for route preview (OpenStreetMap) -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="hero">
+        <span class="eyebrow">Route Discovery</span>
+        <h1 class="title">Roadless<span class="dot">.</span></h1>
+        <p class="tagline">
+          Tell it where you're going. It finds a way there over roads
+          <em>you've never driven</em> &mdash; then sends you to Maps and asks
+          what you found.
+        </p>
+      </header>
+
+      <section class="card" aria-label="Plan a discovery route">
+        <form id="plan-form" class="form" autocomplete="off">
+          <div class="field">
+            <label for="start">Start</label>
+            <div class="field__row">
+              <input
+                id="start"
+                name="start"
+                type="text"
+                placeholder="Current location or an address"
+                inputmode="text"
+              />
+              <button
+                type="button"
+                id="use-location"
+                class="btn btn--ghost"
+                title="Use my current location"
+              >
+                Use my location
+              </button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="destination">Destination</label>
+            <input
+              id="destination"
+              name="destination"
+              type="text"
+              placeholder="Where are you headed?"
+              required
+            />
+          </div>
+
+          <div class="controls">
+            <div class="control">
+              <div class="control__head">
+                <label for="detours">New detours <span class="badge">X</span></label>
+                <output id="detours-out" for="detours">1</output>
+              </div>
+              <input id="detours" name="detours" type="range" min="1" max="3" step="1" value="1" />
+              <p class="hint">How many unfamiliar-road detours to weave in.</p>
+            </div>
+
+            <div class="control">
+              <div class="control__head">
+                <label for="budget">Extra miles <span class="badge">D</span></label>
+                <output id="budget-out" for="budget">1.0</output>
+              </div>
+              <input id="budget" name="budget" type="range" min="0.5" max="10" step="0.5" value="1" />
+              <p class="hint">Max extra miles of road vs. the direct route.</p>
+            </div>
+          </div>
+
+          <button type="submit" id="find-btn" class="btn btn--primary btn--block">
+            Find a new way there
+          </button>
+          <p id="status" class="status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section id="results" class="results" hidden>
+        <div id="map" class="map" aria-label="Route preview"></div>
+        <div id="route-list" class="route-list"></div>
+      </section>
+
+      <!-- Reflection prompt -->
+      <section id="reflect" class="card reflect" hidden>
+        <span class="eyebrow">You're back</span>
+        <h2 class="reflect__title" id="reflect-title">How was the road to your destination?</h2>
+        <p class="reflect__prompt">
+          What did you <strong>do</strong>, <strong>see</strong>, or
+          <strong>learn</strong> that was new?
+        </p>
+        <textarea
+          id="reflect-text"
+          rows="4"
+          placeholder="A mural on a side street, a quieter shortcut, a coffee shop you'd never noticed…"
+        ></textarea>
+        <div class="reflect__actions">
+          <button type="button" id="reflect-save" class="btn btn--primary">Save to journal</button>
+          <button type="button" id="reflect-skip" class="btn btn--ghost">Not this time</button>
+        </div>
+      </section>
+
+      <section id="journal" class="journal" hidden>
+        <div class="journal__head">
+          <span class="eyebrow">Discovery journal</span>
+          <button type="button" id="journal-clear" class="btn btn--ghost btn--sm">Clear history</button>
+        </div>
+        <ul id="journal-list" class="journal__list"></ul>
+        <p class="journal__meta" id="journal-meta"></p>
+      </section>
+
+      <footer class="footer">
+        <p>
+          Routing &amp; geocoding by
+          <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer"
+            >OpenStreetMap</a
+          >
+          contributors via Nominatim &amp; the public OSRM demo server. Travel
+          history is stored only on this device.
+        </p>
+      </footer>
+    </main>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
