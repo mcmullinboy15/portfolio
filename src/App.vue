@@ -1,5 +1,6 @@
 <template>
-  <div v-if="isResumePage" class="app app--resume">
+  <BucketListPage v-if="isBucketListPage" />
+  <div v-else-if="isResumePage" class="app app--resume">
     <ResumePage
       :profile="profile"
       :experiences="experiences"
@@ -48,6 +49,7 @@ import AboutSection from "./components/AboutSection.vue";
 import SkillsSection from "./components/SkillsSection.vue";
 import ContactSection from "./components/ContactSection.vue";
 import ResumePage from "./components/ResumePage.vue";
+import BucketListPage from "./components/BucketListPage.vue";
 import {
   profile,
   stats,
@@ -70,6 +72,7 @@ export default {
     SkillsSection,
     ContactSection,
     ResumePage,
+    BucketListPage,
   },
   data() {
     return {
@@ -86,6 +89,14 @@ export default {
     };
   },
   computed: {
+    isBucketListPage() {
+      const path = window.location.pathname;
+      return (
+        path === "/bucket-list" ||
+        path === "/life" ||
+        new URLSearchParams(window.location.search).get("view") === "bucket-list"
+      );
+    },
     isResumePage() {
       return (
         window.location.pathname === "/resume" ||
